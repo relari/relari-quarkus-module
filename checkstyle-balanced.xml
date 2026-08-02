@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+  CHECKSTYLE CONFIGURATION - BALANCED MODE
+  Recomendado para la mayoría de proyectos profesionales
+  
+  Uso:
+  1. Copia este archivo a la raíz del proyecto como 'checkstyle.xml'
+  2. Agrega el plugin a pom.xml
+  3. Ejecuta: mvn checkstyle:check
+  
+  Personalización:
+  - Para ser más estricto: Cámbia severities a 'error'
+  - Para ser más flexible: Aumenta los valores de 'max'
+-->
+
+<module name="Checker">
+    <!-- ============================================
+         CONFIGURACIÓN GLOBAL
+         ============================================ -->
+    
+    <!-- Codificación del archivo -->
+    <property name="charset" value="UTF-8"/>
+    
+    <!-- Nivel de severidad por defecto -->
+    <property name="severity" value="error"/>
+    
+    <!-- Tipos de archivo a verificar -->
+    <property name="fileExtensions" value="java"/>
+
+    <!-- ============================================
+         VALIDACIONES DE ARCHIVO
+         ============================================ -->
+    
+    <!-- Línea vacía al final del archivo -->
+    <module name="NewlineAtEndOfFile"/>
+    
+    <!-- Máximo de líneas por archivo (2000-2500 es razonable) -->
+    <module name="FileLength">
+        <property name="max" value="2500"/>
+    </module>
+    
+    <!-- No permitir tabulaciones (usar espacios) -->
+    <module name="FileTabCharacter"/>
+    
+    <!-- ============================================
+         ANÁLISIS DE CÓDIGO (TreeWalker)
+         ============================================ -->
+    
+    <module name="TreeWalker">
+        
+        <!-- ====== CONVENCIONES DE NOMBRES ====== -->
+        
+        <!-- Nombres de paquetes: minúsculas con puntos -->
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Nombres de tipos (clases, interfaces): PascalCase -->
+        <module name="TypeName">
+            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+            <property name="tokens" value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Nombres de constantes: UPPER_SNAKE_CASE -->
+        <module name="ConstantName">
+            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$|^log$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Nombres de variables locales: camelCase -->
+        <module name="LocalVariableName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Nombres de parámetros: camelCase -->
+        <module name="ParameterName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Nombres de atributos: camelCase -->
+        <module name="MemberName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Nombres de métodos: camelCase -->
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-z0-9]*[a-zA-Z0-9]*$"/>
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Nombres de métodos estáticos: camelCase -->
+        <module name="StaticVariableName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== GESTIÓN DE IMPORTES ====== -->
+        
+        <!-- No permitir import * -->
+        <module name="AvoidStarImport">
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Eliminar importes no usados -->
+        <module name="UnusedImports">
+            <property name="severity" value="error"/>
+        </module>
+
+        <!-- Eliminar importes duplicados -->
+        <module name="RedundantImport">
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== INDENTACIÓN Y ESPACIOS ====== -->
+        
+        <!-- Validar indentación -->
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="8"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Longitud máxima de línea -->
+        <module name="LineLength">
+            <property name="max" value="120"/>
+            <!-- Ignorar líneas que contienen URLs, imports, etc -->
+            <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Espacios alrededor de operadores y palabras clave -->
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="true"/>
+            <property name="allowEmptyMethods" value="true"/>
+            <property name="allowEmptyTypes" value="true"/>
+            <property name="allowEmptyLambdas" value="true"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- No espacios después de ciertos tokens -->
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="DOT"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- No espacios antes de ciertos tokens -->
+        <module name="NoWhitespaceBefore">
+            <property name="tokens" value="COMMA,SEMI"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Espacios en paréntesis -->
+        <module name="ParenPad">
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== CONTROL DE MÉTODOS ====== -->
+        
+        <!-- Longitud máxima de método -->
+        <module name="MethodLength">
+            <property name="max" value="200"/>
+            <property name="countEmpty" value="false"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Máximo número de parámetros en método -->
+        <module name="ParameterNumber">
+            <property name="max" value="8"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== ESTRUCTURA DE CÓDIGO ====== -->
+        
+        <!-- Llaves izquierdas en la misma línea -->
+        <module name="LeftCurly">
+            <property name="ignoreEnums" value="false"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Llaves derechas en línea separada -->
+        <module name="RightCurly">
+            <property name="shouldStartLine" value="false"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Llaves necesarias en estructuras de control -->
+        <module name="NeedBraces">
+            <property name="tokens" value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== COMPLEJIDAD ====== -->
+        
+        <!-- Complejidad ciclomática máxima -->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="15"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Complejidad de rutas -->
+        <module name="NPathComplexity">
+            <property name="max" value="250"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== BLOQUES Y CONTROL ====== -->
+        
+        <!-- Evitar bloques anidados innecesarios -->
+        <module name="AvoidNestedBlocks">
+            <property name="allowInnerInterfaces" value="true"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Bloques vacíos no permitidos -->
+        <module name="EmptyBlock">
+            <property name="option" value="TEXT"/>
+            <property name="tokens" value="LITERAL_TRY,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE,LITERAL_SWITCH"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== MODIFICADORES ====== -->
+        
+        <!-- Orden de modificadores -->
+        <module name="ModifierOrder">
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Modificadores redundantes -->
+        <module name="RedundantModifier">
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== OTROS ====== -->
+        
+        <!-- Comentarios TODO/FIXME -->
+        <module name="TodoComment">
+            <property name="severity" value="info"/>
+        </module>
+
+        <!-- Evitar números mágicos -->
+        <module name="MagicNumber">
+            <property name="ignoreNumbers" value="-1,0,1,2"/>
+            <property name="ignoreHashCodeMethod" value="true"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Múltiples declaraciones de variables en una línea -->
+        <module name="MultipleVariableDeclarations">
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Tipo de array declarado correctamente -->
+        <module name="ArrayTypeStyle">
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Orden de declaraciones en clase -->
+        <module name="DeclarationOrder">
+            <property name="severity" value="warning"/>
+        </module>
+
+    </module>
+
+</module>

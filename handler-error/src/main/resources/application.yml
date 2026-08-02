@@ -1,0 +1,85 @@
+quarkus:
+  application:
+    name: handler-error
+
+application:
+  env: dev
+  errors:
+    code: API
+    default_code: 'API999'
+
+    # Configuración de canales (opcional)
+    channels:
+      web:
+        prefix: 'EM-WEB'
+      api:
+        prefix: 'EM-API'
+      mobile:
+        prefix: 'EM-MOB'
+    status:
+      # ========================
+      # Errores HTTP Genéricos
+      # ========================
+      BAD_REQUEST:
+        description: 'Solicitud inválida o incorrecta.'
+        status: 400
+      UNAUTHORIZED:
+        description: 'Autenticación requerida.'
+        status: 401
+      FORBIDDEN:
+        description: 'Acceso denegado.'
+        status: 403
+      NOT_FOUND:
+        description: 'Recurso no encontrado.'
+        status: 404
+      CONFLICT:
+        description: 'Conflicto con el estado actual del recurso.'
+        status: 409
+      INTERNAL_SERVER_ERROR:
+        description: 'Error interno del servidor.'
+        status: 500
+    categories:
+      # ========================
+      # Errores de Empleado
+      # ========================
+      EMPLOYEE_NOT_FOUND:
+        code: 'EM002'              # Código por defecto
+        description: 'Empleado no encontrado.'
+        status_code: NOT_FOUND
+        # Códigos alternativos por canal (opcional)
+        code_web: 'EM-WEB-002'
+        code_api: 'EM-API-002'
+        code_mobile: 'EM-MOB-002'
+
+      EMPLOYEE_SAVE_FAILED:
+        code: 'EM001'
+        description: 'Error al guardar al empleado.'
+        status_code: INTERNAL_SERVER_ERROR
+
+      EMPLOYEE_UPDATE_FAILED:
+        code: 'EM003'
+        description: 'Error al actualizar al empleado.'
+        status_code: INTERNAL_SERVER_ERROR
+
+      EMPLOYEE_INACTIVATED:
+        code: 'EM004'
+        description: 'Empleado inactivado.'
+        status_code: CONFLICT
+
+      EMPLOYEE_ACTIVATED:
+        code: 'EM005'
+        description: 'Empleado activado.'
+        status_code: CONFLICT
+
+      # ========================
+      # Errores de Documento
+      # ========================
+      DOCUMENT_NOT_FOUND:
+        code: 'EM006'
+        description: 'Documento no encontrado.'
+        status_code: NOT_FOUND
+
+      DOCUMENT_REGISTERED:
+        code: 'EM007'
+        description: 'Documento registrado.'
+        status_code: CONFLICT

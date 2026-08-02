@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+  CHECKSTYLE CONFIGURATION - STRICT MODE
+  Para código crítico, sistema financiero, código médico, etc.
+  
+  Advertencia: Esta configuración es MUY exigente.
+  Úsala solo si tu equipo está preparado para código de máxima calidad.
+  
+  Uso:
+  1. Copia este archivo a la raíz del proyecto como 'checkstyle.xml'
+  2. Agrega el plugin a pom.xml
+  3. Ejecuta: mvn checkstyle:check
+  4. Prepárate para muchas advertencias al inicio
+-->
+
+<module name="Checker">
+    <!-- ============================================
+         CONFIGURACIÓN GLOBAL
+         ============================================ -->
+    
+    <property name="charset" value="UTF-8"/>
+    <property name="severity" value="error"/>
+    <property name="fileExtensions" value="java"/>
+
+    <!-- ============================================
+         VALIDACIONES DE ARCHIVO
+         ============================================ -->
+    
+    <module name="NewlineAtEndOfFile"/>
+    
+    <module name="FileLength">
+        <property name="max" value="2000"/>
+    </module>
+    
+    <module name="FileTabCharacter"/>
+
+    <!-- ============================================
+         ANÁLISIS DE CÓDIGO (TreeWalker)
+         ============================================ -->
+    
+    <module name="TreeWalker">
+        
+        <!-- ====== CONVENCIONES DE NOMBRES (MÁS ESTRICTO) ====== -->
+        
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+
+        <module name="TypeName">
+            <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+            <property name="tokens" value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF"/>
+        </module>
+
+        <module name="ConstantName">
+            <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+        </module>
+
+        <module name="LocalVariableName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+        </module>
+
+        <module name="ParameterName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+        </module>
+
+        <module name="MemberName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+        </module>
+
+        <module name="MethodName">
+            <property name="format" value="^[a-z][a-z0-9]*[a-zA-Z0-9]*$"/>
+        </module>
+
+        <module name="LocalFinalVariableName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+        </module>
+
+        <module name="StaticVariableName">
+            <property name="format" value="^[a-z]([a-z0-9]*[a-zA-Z0-9])?$"/>
+        </module>
+
+        <!-- ====== GESTIÓN DE IMPORTES (MÁS ESTRICTO) ====== -->
+        
+        <module name="AvoidStarImport"/>
+        <module name="UnusedImports"/>
+        <module name="RedundantImport"/>
+
+        <!-- Importes específicamente ordenados -->
+        <module name="ImportOrder">
+            <property name="groups" value="java,javax,jakarta,/^(?!com\.example\.).*,com.example"/>
+            <property name="ordered" value="true"/>
+            <property name="separated" value="true"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- ====== INDENTACIÓN Y ESPACIOS (ESTRICTO) ====== -->
+        
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="8"/>
+        </module>
+
+        <!-- Líneas aún más cortas -->
+        <module name="LineLength">
+            <property name="max" value="100"/>
+            <property name="ignorePattern" value="^package.*|^import.*|a href|http"/>
+        </module>
+
+        <!-- Espacios alrededor de símbolos -->
+        <module name="WhitespaceAround">
+            <property name="allowEmptyConstructors" value="false"/>
+            <property name="allowEmptyMethods" value="false"/>
+            <property name="allowEmptyTypes" value="false"/>
+            <property name="allowEmptyLambdas" value="false"/>
+        </module>
+
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="DOT,ARRAY_DECLARATOR"/>
+        </module>
+
+        <module name="NoWhitespaceBefore">
+            <property name="tokens" value="COMMA,SEMI,POST_INC,POST_DEC"/>
+        </module>
+
+        <module name="ParenPad">
+            <property name="option" value="space"/>
+        </module>
+
+        <!-- ====== CONTROL DE MÉTODOS (MÁS ESTRICTO) ====== -->
+        
+        <!-- Métodos más cortos -->
+        <module name="MethodLength">
+            <property name="max" value="150"/>
+            <property name="countEmpty" value="false"/>
+        </module>
+
+        <!-- Menos parámetros -->
+        <module name="ParameterNumber">
+            <property name="max" value="7"/>
+        </module>
+
+        <!-- Evitar constructores explícitos sin argumentos -->
+        <module name="ExplicitInitialization"/>
+
+        <!-- ====== ESTRUCTURA DE CÓDIGO (ESTRICTO) ====== -->
+        
+        <module name="LeftCurly">
+            <property name="ignoreEnums" value="false"/>
+            <property name="option" value="eol"/>
+        </module>
+
+        <module name="RightCurly">
+            <property name="shouldStartLine" value="false"/>
+            <property name="option" value="same"/>
+        </module>
+
+        <module name="NeedBraces">
+            <property name="tokens" value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE,LITERAL_SWITCH"/>
+        </module>
+
+        <!-- ====== COMPLEJIDAD (MÁS RESTRICTIVO) ====== -->
+        
+        <!-- Menor complejidad permitida -->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="10"/>
+        </module>
+
+        <module name="NPathComplexity">
+            <property name="max" value="200"/>
+        </module>
+
+        <!-- ====== BLOQUES Y CONTROL ====== -->
+        
+        <module name="AvoidNestedBlocks">
+            <property name="allowInnerInterfaces" value="false"/>
+        </module>
+
+        <module name="EmptyBlock">
+            <property name="option" value="stmt"/>
+            <property name="tokens" value="LITERAL_TRY,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE,LITERAL_SWITCH,LITERAL_WHILE,LITERAL_FOR,LITERAL_DO"/>
+        </module>
+
+        <!-- ====== MODIFICADORES ====== -->
+        
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+
+        <!-- ====== CALIDAD DE CÓDIGO (ESTRICTO) ====== -->
+        
+        <!-- Variables no usadas -->
+        <module name="UnusedLocalVariable"/>
+
+        <!-- Comparar con null correctamente -->
+        <module name="AvoidInlineConditionals"/>
+
+        <!-- Evitar finalizers -->
+        <module name="NoFinalizer"/>
+
+        <!-- Uno solo return en método -->
+        <module name="OneStatementPerLine"/>
+
+        <!-- Evitar operaciones múltiples -->
+        <module name="MultipleStringLiterals">
+            <property name="allowedDuplicates" value="1"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <module name="MultipleVariableDeclarations"/>
+
+        <!-- Números mágicos (no permitidos) -->
+        <module name="MagicNumber">
+            <property name="ignoreNumbers" value="-1,0,1,2"/>
+            <property name="ignoreHashCodeMethod" value="true"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Orden en clases -->
+        <module name="DeclarationOrder"/>
+
+        <!-- Método final en clase final -->
+        <module name="InnerTypeLast"/>
+
+        <!-- Genéricos adecuados -->
+        <module name="AvoidStarImport"/>
+
+        <!-- Constructores por defecto -->
+        <module name="HiddenField">
+            <property name="ignoreConstructorParameter" value="true"/>
+            <property name="ignoreSetter" value="true"/>
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Visibilidad correcta -->
+        <module name="VisibilityModifier">
+            <property name="allowPublicImmutableFields" value="true"/>
+        </module>
+
+        <!-- ====== CONVENCIONES ====== -->
+        
+        <module name="ArrayTypeStyle"/>
+
+        <module name="TodoComment">
+            <property name="severity" value="info"/>
+        </module>
+
+        <!-- Tipos genéricos -->
+        <module name="GenericWhitespace">
+            <property name="severity" value="warning"/>
+        </module>
+
+        <!-- Tratamiento de excepciones -->
+        <module name="EmptyCatchBlock">
+            <property name="exceptionVariableName" value="^expected.*"/>
+        </module>
+
+        <!-- Comprobar que equals() implementa hashCode() -->
+        <module name="EqualsHashCode"/>
+
+        <!-- Comparación con instanceof -->
+        <module name="InstanceOfPadded"/>
+
+        <!-- Orden de modificadores -->
+        <module name="ModifierOrder"/>
+
+        <!-- Sin operaciones innecesarias -->
+        <module name="UnnecessaryParentheses"/>
+
+    </module>
+
+</module>
