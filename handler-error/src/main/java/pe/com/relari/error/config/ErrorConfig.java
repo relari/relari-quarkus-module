@@ -2,7 +2,9 @@ package pe.com.relari.error.config;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.Response;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import pe.com.relari.error.model.ErrorResponse;
 import pe.com.relari.error.util.ErrorUtility;
@@ -10,6 +12,8 @@ import pe.com.relari.error.util.ErrorUtility;
 import java.time.Clock;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @ApplicationScoped
 @RequiredArgsConstructor
 public class ErrorConfig {

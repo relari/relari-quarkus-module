@@ -26,8 +26,6 @@ public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
 
     private static final Logger log = Logger.getLogger(GlobalExceptionHandler.class);
 
-    @ConfigProperty(name = "quarkus.application.name")
-    private String applicationName;
     private final ErrorConfig errorConfig;
 
     @Override

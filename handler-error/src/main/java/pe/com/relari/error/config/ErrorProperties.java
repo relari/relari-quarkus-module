@@ -20,9 +20,17 @@ public interface ErrorProperties {
     @NotNull(message = "Categories cannot be null")
     Map<String, ErrorCategory> categories();
 
+    default ErrorCategory getErrorCategory(String categoryCode) {
+        return this.categories().get(categoryCode);
+    }
+
+    default ErrorStatus getErrorStatus(String statusCode) {
+        return this.status().get(statusCode);
+    }
+
     default ErrorResponse getErrorByCategoryCode(String categoryCode) {
-        ErrorCategory category = this.categories().get(categoryCode);
-        ErrorStatus errorStatus = this.status().get(category.statusCode());
+        ErrorCategory category = getErrorCategory(categoryCode);
+        ErrorStatus errorStatus = getErrorStatus(category.statusCode());
         return ErrorResponse.builder()
                 .code(category.code())
                 .status(errorStatus.status())
@@ -33,7 +41,7 @@ public interface ErrorProperties {
     }
 
     default ErrorResponse getErrorByStatusCode(String statusCode) {
-        ErrorStatus errorStatus = this.status().get(statusCode);
+        ErrorStatus errorStatus = getErrorStatus(statusCode);
         return ErrorResponse.builder()
                 .code(String.format("%s%s", code(), errorStatus.status()))
                 .status(errorStatus.status())
