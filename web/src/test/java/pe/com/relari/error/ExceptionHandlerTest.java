@@ -13,7 +13,7 @@
 //import pe.com.relari.model.common.ApiResponse;
 //import pe.com.relari.model.common.ErrorResponse;
 //import pe.com.relari.model.common.ErrorType;
-//import pe.com.relari.model.common.StatusType;
+//import pe.com.relari.commons.model.StatusType;
 //
 //import jakarta.ws.rs.core.Response;
 //

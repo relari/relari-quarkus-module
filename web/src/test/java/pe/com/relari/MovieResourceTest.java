@@ -4,7 +4,7 @@ import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 import pe.com.relari.model.api.Movie;
-import pe.com.relari.model.common.ApiResponse;
+import pe.com.relari.commons.model.ApiResponse;
 import pe.com.relari.service.MovieService;
 
 import java.util.List;

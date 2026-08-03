@@ -1,6 +1,8 @@
 package pe.com.relari.commons.utility;
 
+import jakarta.ws.rs.core.Response;
 import pe.com.relari.commons.constant.Constants;
+import pe.com.relari.commons.model.ApiResponse;
 
 import java.util.StringJoiner;
 
@@ -25,4 +27,6 @@ public class Utility {
             String username, String jobTitle) {
         return username.concat(Constants.ARROBA).concat(jobTitle);
     }
+
+
 }

@@ -12,6 +12,7 @@ public class Constants {
     public static final String EMPTY = "";
     public static final String POINT = ".";
     public static final String ARROBA = "@";
+    public static final String NULL = null;
     public static final int ZERO = 0;
     public static final int ONE = 1;
 
@@ -20,6 +21,5 @@ public class Constants {
 
     public static final Integer SUCCESS_STATUS = 200;
     public static final String SUCCESS_CODE = "OK";
-
 
 }
