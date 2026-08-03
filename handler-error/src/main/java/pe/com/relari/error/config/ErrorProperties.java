@@ -1,7 +1,7 @@
 package pe.com.relari.error.config;
 
+import io.smallrye.config.ConfigMapping;
 import jakarta.validation.constraints.NotNull;
-import org.eclipse.microprofile.config.inject.ConfigProperties;
 import pe.com.relari.error.model.ErrorCategory;
 import pe.com.relari.error.model.ErrorResponse;
 import pe.com.relari.error.model.ErrorStatus;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static pe.com.relari.commons.constant.Constants.EMPTY;
 
-@ConfigProperties(prefix = "application.errors")
+@ConfigMapping(prefix = "application.errors")
 public interface ErrorProperties {
 
     String code();

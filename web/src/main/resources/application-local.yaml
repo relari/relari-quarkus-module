@@ -39,28 +39,53 @@ greeting:
 application:
   version: 1.0.0
   name: Quarkus Application
+  env: local
   errors:
     default-message: Generic error message
-    status: 500
-    code: MV
+    code: API
+    defaultCode: 'API999'
+    status:
+      # ========================
+      # Errores HTTP Genéricos
+      # ========================
+      BAD_REQUEST:
+        description: 'Solicitud inválida o incorrecta.'
+        status: 400
+      UNAUTHORIZED:
+        description: 'Autenticación requerida.'
+        status: 401
+      FORBIDDEN:
+        description: 'Acceso denegado.'
+        status: 403
+      NOT_FOUND:
+        description: 'Recurso no encontrado.'
+        status: 404
+      CONFLICT:
+        description: 'Conflicto con el estado actual del recurso.'
+        status: 409
+      INTERNAL_SERVER_ERROR:
+        description: 'Error interno del servidor.'
+        status: 500
     categories:
+      # ========================
+      # Errores de Peliculas
       MOVIE_NOT_FOUND:
         code: 'MV001'
         description: 'Movie not found.'
-        status: 404
+        status_code: NOT_FOUND
       MOVIE_SAVE_FAILED:
         code: 'MV002'
         description: 'Error saving the movie.'
-        status: 500
+        status_code: INTERNAL_SERVER_ERROR
       MOVIE_UPDATE_FAILED:
         code: 'MV003'
         description: 'Error updating the movie.'
-        status: 500
+        status_code: INTERNAL_SERVER_ERROR
       MOVIE_NOT_INACTIVATED:
         code: 'EM004'
         description: 'Movie no inactivado.'
-        status: 409
+        status_code: CONFLICT
       MOVIE_NOT_ACTIVATED:
         code: 'EM005'
         description: 'Movie no activado.'
-        status: 409
+        status_code: CONFLICT

@@ -4,7 +4,6 @@ import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 import pe.com.relari.model.api.Movie;
-import pe.com.relari.commons.model.ApiResponse;
 import pe.com.relari.service.MovieService;
 
 import java.util.List;
@@ -26,22 +25,22 @@ class MovieResourceTest {
     void testGetMoviesReturnsOkStatus() {
 
         given()
-                .when().get("/v1/movies")
+                .when().get("/movies")
                 .then()
                 .statusCode(200)
-                .body("status", is("OK"))
-                .body("statusCode", is(200))
+                .body("code", is("OK"))
+                .body("status", is(200))
                 .body("data", instanceOf(java.util.List.class));
     }
 
     @Test
     void testGetMoviesEmptyListInitially() {
         given()
-                .when().get("/v1/movies")
+                .when().get("/movies")
                 .then()
                 .statusCode(200)
-                .body("status", equalTo("OK"))
-                .body("statusCode", equalTo(200))
+                .body("code", equalTo("OK"))
+                .body("status", equalTo(200))
                 .body("data.size()", equalTo(0));
     }
 
@@ -67,7 +66,7 @@ class MovieResourceTest {
         given()
                 .contentType("application/json")
                 .body(movieJson)
-                .when().post("/v1/movies")
+                .when().post("/movies")
                 .then()
                 .statusCode(201);
     }
@@ -85,11 +84,11 @@ class MovieResourceTest {
 
         // Act & Assert
         given()
-                .when().get("/v1/movies")
+                .when().get("/movies")
                 .then()
                 .statusCode(200)
-                .body("status", equalTo("OK"))
-                .body("statusCode", equalTo(200))
+                .body("code", equalTo("OK"))
+                .body("status", equalTo(200))
                 .body("data.size()", equalTo(1))
                 .body("data.size()", is(greaterThan(0)))
                 .body("data[0].title", equalTo("Inception"))
@@ -109,10 +108,11 @@ class MovieResourceTest {
 
         // Act & Assert
         given()
-                .when().get("/v1/movies/1")
+                .when().get("/movies/1")
                 .then()
                 .statusCode(200)
-                .body("status", equalTo("OK"))
+                .body("code", equalTo("OK"))
+                .body("status", equalTo(200))
                 .body("data.title", equalTo("The Matrix"));
     }
 
