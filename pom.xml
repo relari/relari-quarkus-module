@@ -2,14 +2,14 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>pe.com.relari</groupId>
+  <groupId>pe.com.relari.fwk.quarkus</groupId>
   <artifactId>api-neg-movies</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>web</module>
-    <module>handler-error</module>
-    <module>commons-utils</module>
+    <module>handler-error-quarkus</module>
+    <module>support-quarkus</module>
   </modules>
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
@@ -23,7 +23,7 @@
     <quarkus.platform.version>3.26.1</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.5.3</surefire-plugin.version>
-
+    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     <jacoco.version>0.8.12</jacoco.version>
   </properties>
   <dependencyManagement>
@@ -42,6 +42,16 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.24</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${org.mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct-processor</artifactId>
+      <version>${org.mapstruct.version}</version>
     </dependency>
   </dependencies>
   <build>

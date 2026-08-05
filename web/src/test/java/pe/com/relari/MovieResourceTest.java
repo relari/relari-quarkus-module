@@ -44,13 +44,13 @@ class MovieResourceTest {
                 .body("data.size()", equalTo(0));
     }
 
-//    @Test
-//    void testGetMovieByIdNotFound() {
-//        given()
-//                .when().get("/v1/movies/999")
-//                .then()
-//                .statusCode(404);
-//    }
+    @Test
+    void testGetMovieByIdNotFound() {
+        given()
+                .when().get("/movies/ABC")
+                .then()
+                .statusCode(404);
+    }
 
     @Test
     void testAddMovieReturnsCreated() {

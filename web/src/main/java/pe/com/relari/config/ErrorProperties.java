@@ -1,7 +1,7 @@
 package pe.com.relari.config;
 
 import io.smallrye.config.ConfigMapping;
-import pe.com.relari.error.model.ErrorCategory;
+import pe.com.relari.fwk.quarkus.handler.error.model.ErrorCategory;
 
 import java.util.Map;
 

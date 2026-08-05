@@ -2,12 +2,12 @@ package pe.com.relari.service.impl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import java.util.List;
-import java.util.Objects;
+
 import lombok.RequiredArgsConstructor;
 import org.jboss.logging.Logger;
 import pe.com.relari.dao.MovieDao;
 import pe.com.relari.dao.repository.MovieEntity;
-import pe.com.relari.error.exception.ApiException;
+import pe.com.relari.fwk.quarkus.handler.error.exception.ApiException;
 import pe.com.relari.model.api.Movie;
 import pe.com.relari.service.MovieService;
 
@@ -15,7 +15,7 @@ import pe.com.relari.service.MovieService;
  * <b>Class:</b> MovieServiceImpl.<br/>
  * <b>Description:</b> Default implementation of {@code MovieService}. It retrieves movie
  * entities through {@code MovieDao}, maps them to API DTOs and enforces business rules
- * such as throwing {@link pe.com.relari.error.exception.ApiException} when resources are not found.
+ * such as throwing {@link ApiException} when resources are not found.
  *
  * @author Relari
  */
@@ -47,7 +47,7 @@ public class MovieServiceImpl implements MovieService {
   public Movie getMovie(Integer id) {
     log.infof("Find movie with id = %s", id);
     return movieDao.getMovie(id)
-            .filter(Objects::nonNull)
+//            .filter(Objects::nonNull)
         .map(movieEntity -> {
           Movie movie = new Movie();
           movie.setId(movieEntity.id.intValue());

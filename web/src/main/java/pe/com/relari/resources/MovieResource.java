@@ -1,5 +1,6 @@
 package pe.com.relari.resources;
 
+import jakarta.validation.constraints.Pattern;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.HttpHeaders;
@@ -9,9 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import pe.com.relari.commons.model.ApiHeaders;
 import pe.com.relari.commons.model.ApiResponse;
-import pe.com.relari.commons.utility.Utility;
 import pe.com.relari.model.api.Movie;
 import pe.com.relari.service.MovieService;
+
+import static pe.com.relari.commons.constant.Regex.REGEXP_ONLY_NUMBER;
 
 /**
  * <b>Class:</b> MovieResource.<br/>
@@ -40,8 +42,9 @@ public class MovieResource {
   @Produces(MediaType.APPLICATION_JSON)
   public Response getMovie(
       @BeanParam ApiHeaders headers,
-      @PathParam("id") Integer id) {
-    return ApiResponse.success(service.getMovie(id)).toResponse();
+      @Pattern(regexp = REGEXP_ONLY_NUMBER)
+      @PathParam("id") String id) {
+    return ApiResponse.success(service.getMovie(Integer.valueOf(id))).toResponse();
   }
 
   @POST
