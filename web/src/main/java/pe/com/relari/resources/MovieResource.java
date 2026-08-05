@@ -8,8 +8,8 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import pe.com.relari.commons.model.ApiHeaders;
-import pe.com.relari.commons.model.ApiResponse;
+import pe.com.relari.fwk.quarkus.support.model.ApiHeaders;
+import pe.com.relari.fwk.quarkus.support.model.ApiResponse;
 import pe.com.relari.model.api.Movie;
 import pe.com.relari.service.MovieService;
 
