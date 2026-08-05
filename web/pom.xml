@@ -59,11 +59,6 @@
         </dependency>
         <dependency>
             <groupId>pe.com.relari.fwk.quarkus</groupId>
-            <artifactId>commons-utils</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>pe.com.relari.fwk.quarkus</groupId>
             <artifactId>handler-error-quarkus</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
