@@ -11,8 +11,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.jboss.logging.Logger;
 import pe.com.relari.fwk.quarkus.handler.error.config.ErrorConfig;
-import pe.com.relari.fwk.quarkus.handler.error.exception.ApiException;
-import pe.com.relari.fwk.quarkus.handler.error.model.ValidationError;
+import pe.com.relari.commons.exception.ApiException;
+import pe.com.relari.commons.model.error.ValidationError;
 
 /**
  * <b>Class:</b> GlobalExceptionHandler.<br/>

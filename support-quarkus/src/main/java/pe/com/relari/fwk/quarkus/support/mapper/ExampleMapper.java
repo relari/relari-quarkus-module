@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import pe.com.relari.fwk.quarkus.support.model.ApiHeaders;
-import pe.com.relari.fwk.quarkus.support.model.ApiResponse;
+import pe.com.relari.commons.model.api.ApiResponse;
 
 /**
  * <b>Interface:</b> StudentMapper.<br/>

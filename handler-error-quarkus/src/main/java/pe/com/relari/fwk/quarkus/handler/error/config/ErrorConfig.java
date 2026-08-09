@@ -6,8 +6,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-import pe.com.relari.fwk.quarkus.handler.error.model.ErrorResponse;
-import pe.com.relari.fwk.quarkus.handler.error.util.ErrorUtility;
+import pe.com.relari.commons.model.error.ErrorResponse;
 
 import java.time.Clock;
 import java.time.LocalDateTime;

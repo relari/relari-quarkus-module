@@ -2,9 +2,9 @@ package pe.com.relari.fwk.quarkus.handler.error.config;
 
 import io.smallrye.config.ConfigMapping;
 import jakarta.validation.constraints.NotNull;
-import pe.com.relari.fwk.quarkus.handler.error.model.ErrorCategory;
-import pe.com.relari.fwk.quarkus.handler.error.model.ErrorResponse;
-import pe.com.relari.fwk.quarkus.handler.error.model.ErrorStatus;
+import pe.com.relari.commons.model.error.ErrorCategory;
+import pe.com.relari.commons.model.error.ErrorResponse;
+import pe.com.relari.commons.model.error.ErrorStatus;
 
 import java.util.Map;
 
@@ -30,12 +30,12 @@ public interface ErrorProperties {
 
     default ErrorResponse getErrorByCategoryCode(String categoryCode) {
         ErrorCategory category = getErrorCategory(categoryCode);
-        ErrorStatus errorStatus = getErrorStatus(category.statusCode());
+        ErrorStatus errorStatus = getErrorStatus(category.getStatusCode());
         return ErrorResponse.builder()
-                .code(category.code())
-                .status(errorStatus.status())
+                .code(category.getCode())
+                .status(errorStatus.getStatus())
                 .description(getDefaultErrorDescription(
-                        errorStatus.description(), category.description()
+                        errorStatus.getDescription(), category.getDescription()
                 ))
                 .build();
     }
@@ -43,10 +43,10 @@ public interface ErrorProperties {
     default ErrorResponse getErrorByStatusCode(String statusCode) {
         ErrorStatus errorStatus = getErrorStatus(statusCode);
         return ErrorResponse.builder()
-                .code(String.format("%s%s", code(), errorStatus.status()))
-                .status(errorStatus.status())
+                .code(String.format("%s%s", code(), errorStatus.getStatus()))
+                .status(errorStatus.getStatus())
                 .description(getDefaultErrorDescription(
-                        errorStatus.description(), EMPTY
+                        errorStatus.getDescription(), EMPTY
                 ))
                 .build();
     }
