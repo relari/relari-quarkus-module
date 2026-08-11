@@ -23,6 +23,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'maven'
+          # Server ID exacto configurado en el pom.xml (<id>github</id>)
+          server-id: github
+          # Variable de entorno donde Maven buscará las credenciales
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
 
       - name: 🔧 Configure Maven settings.xml for GitHub Packages
         run: |
