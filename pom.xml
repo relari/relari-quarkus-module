@@ -195,4 +195,10 @@
     </snapshotRepository>
   </distributionManagement>
 
+  <repositories>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/relari/*</url>
+    </repository>
+  </repositories>
 </project>
