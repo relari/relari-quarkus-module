@@ -23,6 +23,9 @@
     <quarkus.platform.version>3.26.1</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.5.3</surefire-plugin.version>
+
+    <!-- Versiones de dependencias -->
+    <lombok.version>1.18.24</lombok.version>
     <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     <jacoco.version>0.8.12</jacoco.version>
   </properties>
@@ -41,7 +44,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.24</version>
+      <version>${lombok.version}</version>
     </dependency>
     <dependency>
       <groupId>org.mapstruct</groupId>
@@ -161,4 +164,35 @@
       </properties>
     </profile>
   </profiles>
+
+  <developers>
+    <developer>
+      <id>relari</id>
+      <name>Renzo Lavado</name>
+      <email>lavado.rivas.renzo@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>-5</timezone>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>https://github.com/relari/relari-quarkus-module.git</url>
+    <connection>scm:git:https://github.com/relari/relari-quarkus-module.git</connection>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/relari/relari-quarkus-module</url>
+    </repository>
+    <snapshotRepository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/relari/relari-quarkus-module</url>
+    </snapshotRepository>
+  </distributionManagement>
+
 </project>
