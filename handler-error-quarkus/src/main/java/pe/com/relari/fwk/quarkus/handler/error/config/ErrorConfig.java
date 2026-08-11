@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import pe.com.relari.commons.model.error.ErrorResponse;
+import pe.com.relari.fwk.quarkus.support.util.ResponseUtils;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -40,7 +41,7 @@ public class ErrorConfig {
         if (shouldIncludeStackTrace()) {
             errorResponse.setThrowable(throwable);
         }
-        return ErrorUtility.getErrorResponseEntity(errorResponse);
+        return ResponseUtils.toErrorResponse(errorResponse);
     }
 
     public Response getErrorByStatusCode(String statusCode, Throwable throwable) {
@@ -49,7 +50,7 @@ public class ErrorConfig {
         if (shouldIncludeStackTrace()) {
             errorResponse.setThrowable(throwable);
         }
-        return ErrorUtility.getErrorResponseEntity(errorResponse);
+        return ResponseUtils.toErrorResponse(errorResponse);
     }
 
     public Response getErrorByStatusCode(String statusCode, Object details, Throwable throwable) {
@@ -61,7 +62,7 @@ public class ErrorConfig {
         if (details != null) {
             errorResponse.setDetails(details);
         }
-        return ErrorUtility.getErrorResponseEntity(errorResponse);
+        return ResponseUtils.toErrorResponse(errorResponse);
     }
 
 }

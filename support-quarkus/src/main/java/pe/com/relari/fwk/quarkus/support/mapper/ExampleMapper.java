@@ -24,17 +24,17 @@ public interface ExampleMapper {
   @Named("apiResponse")
   @Mapping(target = "status", constant = "200")
   @Mapping(target = "code", expression = "java( request.getAppCode() + ' ' + request.getUserId() )")
-  @Mapping(target = "data", defaultValue = "null")
-  ApiResponse<?> apiResponse(ApiHeaders request);
+  @Mapping(target = "data", source = "authorization")
+  ApiResponse<String> apiResponse(ApiHeaders request);
 
   @Mapping(target = "status", constant = "200")
   @Mapping(target = "code", source = "appCode", defaultValue = "API")
-  @Mapping(target = "data", defaultValue = "null")
-  ApiResponse<?> dataValidateDefaultValue(ApiHeaders request);
+  @Mapping(target = "data", source = "authorization")
+  ApiResponse<String> dataValidateDefaultValue(ApiHeaders request);
 
   @Mapping(target = "status", constant = "200")
   @Mapping(target = "code", source = "appCode", defaultExpression = "java(\"API\")")
-  @Mapping(target = "data", defaultValue = "null")
-  ApiResponse<?> dataValidateDefaultExpression(ApiHeaders request);
+  @Mapping(target = "data", source = "authorization")
+  ApiResponse<String> dataValidateDefaultExpression(ApiHeaders request);
 
 }

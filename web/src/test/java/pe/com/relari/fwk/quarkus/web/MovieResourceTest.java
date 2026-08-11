@@ -49,7 +49,7 @@ class MovieResourceTest {
         given()
                 .when().get("/movies/ABC")
                 .then()
-                .statusCode(404);
+                .statusCode(400);
     }
 
     @Test
